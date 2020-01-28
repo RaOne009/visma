@@ -15,10 +15,10 @@ def simplifyMatrix(mat):
     Returns:
         mat {visma.matrix.structure.Matrix} -- simplified matrix token
     """
-    mat.dim[0] = len(mat.value)
-    mat.dim[1] = len(mat.value[0])
+    # mat.dim[0] = len(mat.value)
+    # mat.dim[1] = len(mat.value[0])
     for i in range(mat.dim[0]):
-        for j in range(mat.dim[1]):
+        for j in range(mat.dim[1] - 1):
             mat.value[i][j], _, _, _, _ = simplify(mat.value[i][j])
     return mat
 
@@ -37,12 +37,14 @@ def addMatrix(matA, matB):
         Make dimCheck before calling addMatrix
     """
     matSum = Matrix()
-    matA.dim[0] = len(matA.value)
-    matA.dim[1] = len(matA.value[0])
+    # matA.dim[0] = len(matA.value)
+    # matA.dim[1] = len(matA.value[0])
     matSum.empty(matA.dim)
+    print("check dim : " + str(matSum.dim) + str(matA.dim) + str(matB.dim))
     for i in range(matA.dim[0]):
-        for j in range(matA.dim[1]):
-            matSum.value[i][j].extend(matA.value[i][j])
+        for j in range(matA.dim[1] - 1):
+            print(i, j, matA.value[i][j], matB.value[i][j])
+            matSum.value[i][j].extend(matA. value[i][j])
             matSum.value[i][j].append(Binary('+'))
             matSum.value[i][j].extend(matB.value[i][j])
     matSum = simplifyMatrix(matSum)

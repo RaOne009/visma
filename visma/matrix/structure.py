@@ -36,16 +36,21 @@ class Matrix(object):
             self.power = power
         else:
             self.power = 1
-        if dim is not None:
+        if value is not None:
+            self.dim = [len(self.value), len(self.value)]
+        elif dim is not None:
             self.dim = dim
         else:
             self.dim = [0, 0]
+        print("Value: " + str(self.value))
+        print("Dim: " + str(self.dim))
 
     def convertMatrixToString(self, Latex=False):
         from visma.io.parser import tokensToString
         MatrixString = ''
-        self.dim[0] = len(self.value)
-        self.dim[1] = len(self.value[0])
+        print("Value at conversion: " + str(self.value))
+        # self.dim[0] = len(self.value)
+        # self.dim[1] = len(self.value[0])
         for i in range(self.dim[0]):
             for j in range(self.dim[1]):
                 if not Latex:
@@ -67,7 +72,7 @@ class Matrix(object):
         """
         matSum = Matrix()
         matSum.empty(self.dim)
-        for i in range(self.dim[0]):
+        for i in range(self.dim[0]): 
             for j in range(self.dim[1]):
                 matSum.value[i][j].extend(self.value[i][j])
                 matSum.value[i][j].append(Binary('+'))

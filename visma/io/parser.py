@@ -179,6 +179,7 @@ def tokensToLatex(eqTokens):
     Returns:
         eqLatex {string} -- equation string in LaTeX
     """
+    print(eqTokens)
     eqLatex = ""
     for token in eqTokens:
         if isinstance(token, Matrix):
@@ -230,8 +231,10 @@ def tokensToString(tokens):
         tokenString {string} -- equation string
     """
     # FIXME: tokensToString method
+    print("Function tokensTostring used: " + str(tokens))
     tokenString = ''
     for token in tokens:
+        print("token: " + str(token))
         if isinstance(token, Constant):
             if isinstance(token.value, list):
                 for j, val in token.value:
@@ -314,5 +317,6 @@ def tokensToString(tokens):
                     tokenString += ","
                 tokenString = tokenString[:-1] + ";"
             tokenString = tokenString[:-1] + "]"
+        print("tokenString: " + tokenString)
 
     return tokenString

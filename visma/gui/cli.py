@@ -167,6 +167,7 @@ def commandExec(command):
         nonMatrixResult -- {True} when the result after performing operations on the Matrix is not a Matrix (in operations like Determinant, Trace etc.)
         scalarOperations -- {True} when one of the operand in a scalar (used in operations like Scalar Addition, Scalar Subtraction etc.)
         """
+        print("Inside matrix part " + operation)
         operation = operation[4:]
         dualOperand = False
         nonMatrixResult = False
@@ -183,8 +184,9 @@ def commandExec(command):
                     for i, _ in enumerate(row1):
                         row1[i] = tokenizer(row1[i])
                     matrixOperand1.append(row1)
-                Matrix1 = Matrix()
-                Matrix1.value = matrixOperand1
+                print(1, matrixOperand1)
+                Matrix1 = Matrix(value = matrixOperand1)
+                # Matrix1.value = matrixOperand1
                 inputEquation2 = inputEquation2[1:][:-1]
                 inputEquation2 = inputEquation2.split('; ')
                 matrixOperand2 = []
@@ -193,8 +195,9 @@ def commandExec(command):
                     for i, _ in enumerate(row1):
                         row1[i] = tokenizer(row1[i])
                     matrixOperand2.append(row1)
-                Matrix2 = Matrix()
-                Matrix2.value = matrixOperand2
+                print(2, matrixOperand2)
+                Matrix2 = Matrix(value = matrixOperand2)
+                # Matrix2.value = matrixOperand2
                 Matrix1_copy = copy.deepcopy(Matrix1)
                 Matrix2_copy = copy.deepcopy(Matrix2)
             else:
@@ -210,8 +213,8 @@ def commandExec(command):
                     for i, _ in enumerate(row1):
                         row1[i] = tokenizer(row1[i])
                     matrixOperand2.append(row1)
-                Matrix2 = Matrix()
-                Matrix2.value = matrixOperand2
+                Matrix2 = Matrix(value = matrixOperand2)
+                # Matrix2.value = matrixOperand2
                 scalarTokens_copy = copy.deepcopy(scalarTokens)
                 Matrix2_copy = copy.deepcopy(Matrix2)
 
@@ -226,12 +229,13 @@ def commandExec(command):
                     row1[i] = tokenizer(row1[i])
                 matrixOperand.append(row1)
 
-            Matrix0 = Matrix()
-            Matrix0.value = matrixOperand
+            Matrix0 = Matrix(value = matrixOperand)
+            # Matrix0.value = matrixOperand
             Matrix0_copy = copy.deepcopy(Matrix0)
         if operation == 'simplify':
             MatrixResult = simplifyMatrix(Matrix0)
         elif operation == 'add':
+            print("dim", Matrix1.dim)
             MatrixResult = addMatrix(Matrix1, Matrix2)
         elif operation == 'sub':
             MatrixResult = subMatrix(Matrix1, Matrix2)
@@ -264,4 +268,5 @@ def commandExec(command):
                 finalCLIstring = resultMatrixString(operation=operation, operand1=Matrix0_copy, nonMatrixResult=True, result=result)
             else:
                 finalCLIstring = resultMatrixString(operation=operation, operand1=Matrix0_copy, result=MatrixResult)
+        print("Invalid matrix operation: " + str(nonMatrixResult))
         print(finalCLIstring)
