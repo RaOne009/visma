@@ -58,11 +58,11 @@ def init():
 
         def default(self, inp):
             '''Directs to CommandExec and performs operations thereafter'''
-            try:
-                commandExec(inp)
-            except Exception:
-                logger.error('Invalid Expression: ' + inp)
-                print('Invalid Expression: ' + inp + '\n')
+            # try:
+            commandExec(inp)
+            # except Exception:
+                # logger.error('Invalid Expression: ' + inp)
+                # print('Invalid Expression: ' + inp + '\n')
 
         do_EOF = do_exit
 
